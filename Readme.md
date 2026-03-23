@@ -14,6 +14,9 @@ pipenv install
 # Activate the virtual environment
 pipenv shell
 
+# Export app.py
+export FLASK_APP=app.py
+
 # Initialize the database
 flask db init
 flask db migrate -m "initial migration"
@@ -100,4 +103,48 @@ PATCH /workouts/1
 {
   "duration": 45
 }
+```
+
+## Testing the Application 
+
+### Sign up - Create your Username and Password
+```curl -c cookies.txt -X POST "http://127.0.0.1:5555/signup" \
+  -H "Content-Type: application/json" \
+  -d '{"username": "testuser", "email": "test@example.com", "password": "password123"}'
+```
+
+### Login 
+```curl -c cookies.txt -X POST "http://127.0.0.1:5555/login" \
+  -H "Content-Type: application/json" \
+  -d '{"username": "testuser", "password": "password123"}'
+
+```
+
+### Logout
+```
+curl -b cookies.txt -X DELETE "http://127.0.0.1:5555/logout"
+```
+
+### Get Workout
+```
+curl -b cookies.txt "http://127.0.0.1:5555/workouts?page=1&per_page=10"
+```
+
+### Create a workout
+```
+curl -b cookies.txt -X POST http://127.0.0.1:5555/workouts \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Morning Run", "notes": "Felt great", "duration": 30}'
+```
+
+### Update a workout
+```
+curl -b cookies.txt -X PATCH http://127.0.0.1:5555/workouts/1 \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Updated Title", "duration": 45}'
+```
+
+### Delete a workout
+```
+curl -b cookies.txt -X DELETE http://127.0.0.1:5555/workouts/1
 ```
