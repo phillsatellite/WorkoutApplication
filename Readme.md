@@ -69,7 +69,8 @@ WorkoutApplication/
 ## Example Requests
 
 ### Signup
-```json
+```
+    json
 POST /signup
 {
   "username": "phill",
@@ -79,7 +80,8 @@ POST /signup
 ```
 
 ### Login
-```json
+```
+    json
 POST /login
 {
   "username": "phill",
@@ -88,7 +90,8 @@ POST /login
 ```
 
 ### Create Workout
-```json
+```
+    json
 POST /workouts
 {
   "title": "Morning Run",
@@ -98,7 +101,8 @@ POST /workouts
 ```
 
 ### Update Workout
-```json
+```
+    json
 PATCH /workouts/1
 {
   "duration": 45
@@ -108,13 +112,15 @@ PATCH /workouts/1
 ## Testing the Application 
 
 ### Sign up - Create your Username and Password
-```curl -c cookies.txt -X POST "http://127.0.0.1:5555/signup" \
+```
+curl -c cookies.txt -X POST "http://127.0.0.1:5555/signup" \
   -H "Content-Type: application/json" \
   -d '{"username": "testuser", "email": "test@example.com", "password": "password123"}'
 ```
 
 ### Login 
-```curl -c cookies.txt -X POST "http://127.0.0.1:5555/login" \
+```
+curl -c cookies.txt -X POST "http://127.0.0.1:5555/login" \
   -H "Content-Type: application/json" \
   -d '{"username": "testuser", "password": "password123"}'
 
